@@ -1,13 +1,27 @@
-// loads stencil
-require('./dist/hydrate');
+const stencil = require('./dist/hydrate');
 const express = require('express');
+const fs = require('fs');
 const path = require('path');
 
 const app = express();
 const port = 3030;
 
-app.use(express.static(path.join(__dirname, 'www')));
+const indexHtml = fs.readFileSync(path.resolve('./src/index.html'), 'utf8');
 
-app.listen(port, () =>
-  console.log(`server started at http://localhost:${port}/`)
-);
+async function serverRenderer(req, res, next) {
+  const renderedHtml = await stencil.renderToString(indexHtml);
+  console.log(`SERVER RENDERED ${req.url} at ${Date.now()}`);
+  res.send(renderedHtml.html);
+}
+
+async function run() {
+  app.use('/build/', express.static(path.join(__dirname, 'www/build')));
+  app.use('/assets/', express.static(path.join(__dirname, 'www/assets')));
+  app.use(serverRenderer);
+
+  app.listen(port, () =>
+    console.log(`server started at http://localhost:${port}/`)
+  );
+}
+
+run();
