@@ -1,0 +1,21 @@
+{
+  "name": "stencil-ssr-example",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "collection": "dist/collection/collection-manifest.json",
+  "types": "dist/types/components.d.ts",
+  "description": "Stencil starter with server-side rendering",
+  "scripts": {
+    "build": "stencil build --prerender",
+    "dev": "stencil build --dev --watch --serve",
+    "ssr": "npm run build && node server.js"
+  },
+  "dependencies": {
+    "@stencil/core": "^1.0.0",
+    "@stencil/router": "^1.0.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {}
+}
