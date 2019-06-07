@@ -10,7 +10,11 @@ const indexHtml = fs.readFileSync(path.resolve('./src/index.html'), 'utf8');
 
 async function serverRenderer(req, res, next) {
   const renderedHtml = await stencil.renderToString(indexHtml, {
-    url: req.url
+    url: req.url, // render correct page-component based on url
+
+    removeBooleanAttributeQuotes: true, // remove overwhelming quotes
+
+    prettyHtml: true, // better read-ability when debuggin'
   });
   console.log(`SERVER RENDERED ${req.url} at ${Date.now()}`);
   res.send(renderedHtml.html);
