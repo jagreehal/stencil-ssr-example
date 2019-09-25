@@ -14,7 +14,7 @@ async function serverRenderer(req, res, next) {
 
     removeBooleanAttributeQuotes: true, // remove overwhelming quotes
 
-    prettyHtml: true, // better read-ability when debuggin'
+    prettyHtml: true // better read-ability when debuggin'
   });
   console.log(`SERVER RENDERED ${req.url} at ${Date.now()}`);
   res.send(renderedHtml.html);

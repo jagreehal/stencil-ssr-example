@@ -11,7 +11,13 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 export namespace Components {
   interface HomePage {}
   interface MyApp {}
-  interface Page1 {}
+  interface Page1 {
+    'dataFromServer': string;
+    'first': string;
+    'initialCount': number;
+    'last': string;
+    'todos': string;
+  }
   interface Page2 {}
 }
 
@@ -50,10 +56,16 @@ declare global {
 }
 
 declare namespace LocalJSX {
-  interface HomePage extends JSXBase.HTMLAttributes<HTMLHomePageElement> {}
-  interface MyApp extends JSXBase.HTMLAttributes<HTMLMyAppElement> {}
-  interface Page1 extends JSXBase.HTMLAttributes<HTMLPage1Element> {}
-  interface Page2 extends JSXBase.HTMLAttributes<HTMLPage2Element> {}
+  interface HomePage {}
+  interface MyApp {}
+  interface Page1 {
+    'dataFromServer'?: string;
+    'first'?: string;
+    'initialCount'?: number;
+    'last'?: string;
+    'todos'?: string;
+  }
+  interface Page2 {}
 
   interface IntrinsicElements {
     'home-page': HomePage;
@@ -68,7 +80,12 @@ export { LocalJSX as JSX };
 
 declare module "@stencil/core" {
   export namespace JSX {
-    interface IntrinsicElements extends LocalJSX.IntrinsicElements {}
+    interface IntrinsicElements {
+      'home-page': LocalJSX.HomePage & JSXBase.HTMLAttributes<HTMLHomePageElement>;
+      'my-app': LocalJSX.MyApp & JSXBase.HTMLAttributes<HTMLMyAppElement>;
+      'page-1': LocalJSX.Page1 & JSXBase.HTMLAttributes<HTMLPage1Element>;
+      'page-2': LocalJSX.Page2 & JSXBase.HTMLAttributes<HTMLPage2Element>;
+    }
   }
 }
 

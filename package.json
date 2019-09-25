@@ -9,12 +9,13 @@
   "description": "Stencil starter with server-side rendering",
   "scripts": {
     "build": "stencil build --prerender",
-    "dev": "stencil build --dev --watch --serve",
-    "ssr": "npm run build && node server.js"
+    "dev": "stencil build --watch --prerender",
+    "ssr": "node server.js",
+    "ssr:single": "node server-single.js"
   },
   "dependencies": {
-    "@stencil/core": "^1.0.0",
-    "@stencil/router": "^1.0.0",
+    "@stencil/core": "^1.5.1",
+    "@stencil/router": "^1.0.1",
     "express": "^4.17.1"
   },
   "devDependencies": {}
