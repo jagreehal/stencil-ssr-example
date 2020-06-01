@@ -55,7 +55,7 @@ export class Page1 {
 
   async componentWillLoad() {
     this.parseTodos(this.todos);
-    this.cwl = `in componentWillLoad - ${Date()} - window:${window} - fetch:${fetch}`;
+    this.cwl = `in componentWillLoad - ${Date()} - window:${!!window} - fetch:${!!fetch}`;
     if (!this.data && fetch) {
       const response = await fetch('https://jsonplaceholder.typicode.com/users/1');
       console.log(response);
