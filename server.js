@@ -2,6 +2,9 @@ const stencil = require('./dist/hydrate');
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const fetch = require('node-fetch')
+
+Object.assign(global, {fetch})
 
 const app = express();
 const port = 3333;
