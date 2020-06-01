@@ -68,8 +68,8 @@ export class Page1 {
       this.data = d.name;
     }
   }
-  async componentDidlLoad() {
-    this.cdl = `called componentDidlLoad - ${Date()}`;
+  async componentDidLoad() {
+    this.cdl = `called componentDidLoad - ${Date()}`;
   }
   render() {
     const todosList = this._todos.map(todo => (
@@ -82,7 +82,7 @@ export class Page1 {
         I'm Page #1 - {this.first} {this.last}
         <h3>componentWillLoad</h3>
         <div>{this.cwl}</div>
-        <h3>componentDidlLoad</h3>
+        <h3>componentDidLoad</h3>
         <div>{this.cdl}</div>
         <h3>Call local method</h3>
         <button class="blue" onClick={() => console.log(this.first)}>
