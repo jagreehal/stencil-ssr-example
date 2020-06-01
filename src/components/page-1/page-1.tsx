@@ -53,7 +53,11 @@ export class Page1 {
     }
   }
 
-  async componentWillLoad() {
+  componentWillLoad() {
+      this.init() // load in background
+  }
+
+  async init() {
     this.parseTodos(this.todos);
     this.cwl = `in componentWillLoad - ${Date()} - window:${!!window} - fetch:${!!fetch}`;
     if (!this.data && fetch) {
